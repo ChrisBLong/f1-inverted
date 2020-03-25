@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>About F1 Inverted</title>
+    <style>
+      body { 
+        font-family: arial, helvetica;
+        padding: 5%;
+        margin: 5%;
+        line-height: 140%;
+      }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+<h1>Formula One Inverted Simulator</h1>
+
+<p><i>Chris Long, 25th March 2020.</i> <a href="https://github.com/ChrisBLong/f1-inverted">GitHub</a></p>
+
+<p>The F1 Inverted Simulator lets you explore the forces acting on an F1 car (or any car, really) to see how thrust, drag,
+traction and downforce interact to affect the performance of a car at different speeds.</p>
+
+<p>I created it to learn more about the frequently-quoted claim that, given a suitable tunnel or track, F1 cars could drive upside
+down (and to illustrate my YouTube video on this subject). Although it's clearly true that F1 cars do generate enough downforce to support their
+own weight, making the driving-upside-down trick feasible, such discussions never seem to talk about the need for the inverted
+car to still have enough traction to keep itself moving forward.</p>
+
+<p>It's a very basic simulator but it does enough to accurately explore the forces acting on the car at different speeds. It
+doesn't simulate the car's suspension, or weight transfer during acceleration and braking, but those things aren't important
+for my purposes.</p>
+
+<p>The simulator confirms that F1 cars can generate enough downforce to hold themselves up and still have traction available to
+maintain the necessary speed. However, many production sports cars that claim to generate significant downforce wouldn't fare
+so well. Driving upside-down requires a lot of downforce - not just a little more than the car's weight, but nearly double -
+and that comes with lots of drag, so only cars with extreme aerodynamics and lots of power can manage it.</p>
+
+<p>To play with the simulator, click <a href="index.html">here</a>.</p>
+
+<p style="text-align: center">
+  <img style="max-width: 90%" src="screenshot.png">
+</p>
+
+<p>What do the arrows represent?
+<ul>
+<li>RED represents thrust, either forward or backward. The red arrow pointing forward from the back wheel represents the thrust
+pushing the car forward as a result of the engine turning the wheels. The red arrow in the middle of the car represents the net
+thrust acting on the car, after drag is taken into account. When the drag is the same as the thrust, the net thrust is zero and
+the car's speed becomes constant. Whenever net thrust is not zero, the car accelerates or decelerates in the relevant direction.</li>
+<li>GREEN represents the maximum traction the rear tyres can provide, based on their current loading (and the tyres'
+coefficient of friction). The red thrust arrow can never be longer that the green traction arrow; if you try to accelerate or brake
+too hard, the thrust exceeds the traction available and the wheels will slip. When that happens, the wheels flash red and their
+effective thrust is cut in half.</li> 
+<li>YELLOW represents the aerodynamic drag acting backwards and trying to slow the car down. This starts low but increases exponentially
+as the car goes faster. Doubling the speed leads to four times the drag.</li>
+<li>BLUE represents the current load on the tyres; in other words, the force pressing the car down onto the road, or up on to
+the ceiling, depending on which way up the car is. This force comes partly from the car's weight and partly from the aerodynamic
+downforce. Weight is constant but always acts downwards; the downforce acts 'down' relative to the car, so effectively up when
+the car is inverted. Downforce also increases exponentially with speed, but turning upside down reduces the overall load on the tyres
+by twice the car's weight, which makes a big difference.</li>
+</ul>
+The arrows are all shown to the same scale, so you can see how the different forces interact.</p>
+
+<p>You can find this whole thing on GitHub here: <a href="https://github.com/ChrisBLong/f1-inverted">https://github.com/ChrisBLong/f1-inverted</a>.
+It's all done in JavaScript using the <a href="https://threejs.org/">three.js</a> library. The F1 car model came from
+<a href="https://sketchfab.com/3d-models/simple-low-poly-cars-pack-free-3ae4b6b79f0b468c9bc719081872164d">here</a> and was created by
+<a href="https://sketchfab.com/ArtyomOganesyan">ArtyomOganesyan</a>, released under <a href="https://creativecommons.org/licenses/by-nc/4.0/">
+Creative Commons CC BY-NC 4.0 licence</a>. Further 3D modelling was done in <a href="https://www.blender.org">Blender</a>.</p>
+
+<p>Have fun!</p>
+
+</body>
+</html>
