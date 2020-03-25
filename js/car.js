@@ -47,6 +47,8 @@ export class Car {
     
     this.speed = 0;                                       // The current speed of the car (m/s).
     this.acceleration = 0;                                // The current acceleration of the car (m/s^2).
+    this.minAcceleration = 0;                             // The minimum acceleration seen for the car so far (m/s^2).
+    this.maxAcceleration = 0;                             // The maximum acceleration seen for the car so far (m/s^2).
     this.braking = 0;
     
     // Calculated values
@@ -222,6 +224,10 @@ export class Car {
     this.acceleration = this.netThrust / this.mass;
     this.speed.add(this.acceleration / 60); // Assume 60fps.
     
+    // Update the min and max values as necessary.
+    if (this.acceleration < this.minAcceleration) this.minAcceleration = this.acceleration;
+    if (this.acceleration > this.maxAcceleration) this.maxAcceleration = this.acceleration;
+    
     // Check for being nearly stopped and force speed to zero. This stops the car
     // being left with a very low +ve or -ve speed even after all forces are removed.
     if (Math.abs(this.acceleration) < 0.01 && Math.abs(this.speed) < 0.5) {
@@ -293,12 +299,18 @@ export class Car {
     displayData = this.speed.inUnit("kilometers per hour").toFixed(1); 
     el.innerHTML = displayData;
     
+    el = document.getElementById("carSpeedMph");
+    displayData = this.speed.inUnit("miles per hour").toFixed(1); 
+    el.innerHTML = displayData;
+    
     el = document.getElementById("carNetThrustN");
     displayData = this.netThrust.toFixed(0); 
     el.innerHTML = displayData;
     
     el = document.getElementById("carAccelG");
-    displayData = (this.acceleration / this.g).toFixed(1); 
+    displayData = (this.minAcceleration / this.g).toFixed(1);
+    displayData += " / " + (this.acceleration / this.g).toFixed(1);
+    displayData += " / " + (this.maxAcceleration / this.g).toFixed(1); 
     el.innerHTML = displayData;
     
     el = document.getElementById("carTractionN");

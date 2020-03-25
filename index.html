@@ -62,18 +62,32 @@ ga('send', 'pageview');
     <script type="module" src="./js/main.js"></script>
     <div id="infoPanel">
       <table>
+      
+      
         <tr class="headerRow">
-          <td>Car</td><td>Speed (kph)</td><td>Acceleration (g)</td><td>Net Thrust (N)</td><td>Traction Available (N)</td>
+          <td>Car</td><td>Speed (kph)</td><td>Speed (mph)</td><td colspan="2">Accel (min/curr/max) (g)</td>
         </tr>
         <tr>
-          <td></td><td id="carSpeedKph">0</td><td id="carAccelG">0.0</td><td id="carNetThrustN">0</td><td id="carTractionN">0</td>
+          <td></td><td id="carSpeedKph">0</td><td id="carSpeedMph">0</td><td colspan="2" id="carAccelG">0.0</td>
         </tr>
+        
+        
         <tr class="headerRow">
-          <td></td><td>Thrust (N)</td><td>Drag (N)</td><td>Downforce (N)</td><td>Downforce (%)</td>
+          <td></td><td>Thrust (N)</td><td>Drag (N)</td><td>Net Thrust (N)</td><td>Traction Available (N)</td>
         </tr>
         <tr>
-          <td></td><td id="carThrustN">0</td><td id="carDragN">0.0</td><td id="carDownforceN">0</td><td id="carDownforcePc">0</td>
+          <td></td><td id="carThrustN">0</td><td id="carDragN">0.0</td><td id="carNetThrustN">0</td><td id="carTractionN">0</td>
         </tr>
+        
+        
+        <tr class="headerRow">
+          <td></td><td>Downforce (N)</td><td>Downforce (%)</td>
+        </tr>
+        <tr>
+          <td></td><td id="carDownforceN">0</td><td id="carDownforcePc">0</td>
+        </tr>
+        
+        
         <tr class="headerRow">
           <td>Wheels</td><td>Load (N)</td><td>RPM</td><td>Power (bhp)</td>
         </tr>
