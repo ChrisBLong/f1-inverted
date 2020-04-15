@@ -39,6 +39,8 @@ export class Car {
     
     this.mass = 740;                                      // The mass of the car (kg).
     
+    this.maxPowerBhp = 750;                               // The maximum wheel horsepower available from the engine (bhp).
+    
     this.liftArea = 5.5;                                  // Downforce-producing (wing/diffuser) area (meters squared).
     this.coeffLift = 1.2;                                 // Coefficient of lift (dimensionless).
     
@@ -194,7 +196,9 @@ export class Car {
     this.wheelFR.frictionCoeff = parms.coeffFriction;
     this.wheelRR.frictionCoeff = parms.coeffFriction;
     this.wheelRL.frictionCoeff = parms.coeffFriction;
+    this.liftArea = parms.areaLift;
     this.coeffLift = parms.coeffLift;
+    this.dragArea = parms.areaDrag;
     this.coeffDrag = parms.coeffDrag;
   }
   

@@ -35,11 +35,18 @@ var carParms = {
     mass: car.mass,
     g: car.g,
     coeffFriction: car.wheelRL.frictionCoeff,
+    areaLift: car.liftArea,
     coeffLift: car.coeffLift,
+    areaDrag: car.dragArea,
     coeffDrag: car.coeffDrag
 }
 
+// Clicking the 'playPause' UI element will call an anonymous function that calls the playPause() toggle function.
 carControls.playPause = function() { playPause() };
+
+// Clicking the 'flip' UI element will call an anonymous function that:
+//   (a) calls the flipOrientation() toggle function;
+//   (b) updates the camera position to keep as much information as possible onscreen.
 carControls.flip = function() {
   car.flipOrientation()
   if (car.orientation == "erect") {
@@ -49,17 +56,92 @@ carControls.flip = function() {
   }
 };
 
-var gui = new dat.GUI();
+// Create a new GUI object and initialise it with the presets for a few different cars.
+var gui = new dat.GUI({
+  load: {
+    "preset": "F1 - Monaco",
+    "closed": false,
+    "remembered": {
+      "F1 - Monaco": {
+        "0": {
+          "mass": 740,
+          "g": 9.81,
+          "coeffFriction": 1.5,
+          "areaLift": 5.5,
+          "coeffLift": 1.2,
+          "areaDrag": 2.5,
+          "coeffDrag": 0.85
+        }
+      },
+      "F1 - Monza": {
+        "0": {
+          "mass": 740,
+          "g": 9.81,
+          "coeffFriction": 1.5,
+          "areaLift": 5.5,
+          "coeffLift": 0.7366298262685506,
+          "areaDrag": 2.4083824006738657,
+          "coeffDrag": 0.4278630589179951
+        }
+      },
+      "McLaren F1": {
+        "0": {
+          "mass": 1138,
+          "g": 9.81,
+          "coeffFriction": 1,
+          "areaLift": 1.79,
+          "coeffLift": 0.1,
+          "areaDrag": 1.79,
+          "coeffDrag": 0.32
+        }
+      },
+      "Saleen S7": {
+        "0": {
+          "mass": 1300,
+          "g": 9.81,
+          "coeffFriction": 1,
+          "areaLift": 3.99632577561958,
+          "coeffLift": 1.0233418245226378,
+          "areaDrag": 1.7467393277798187,
+          "coeffDrag": 0.33964398253212214
+        }
+      },
+      "Radical SR8": {
+        "0": {
+          "mass": 648,
+          "g": 9.81,
+          "coeffFriction": 1.1,
+          "areaLift": 2.1,
+          "coeffLift": 0.9,
+          "areaDrag": 2,
+          "coeffDrag": 0.48
+        }
+      }
+    },
+    "folders": {
+      "Parameters": {
+        "preset": "Default",
+        "closed": false,
+        "folders": {}
+      }
+    }
+  }
+});
+
+gui.remember(carParms);
+
 gui.add(carControls, 'playPause');
 gui.add(carControls, 'flip');
-gui.add(carControls, 'torque', 0, 3000);
-gui.add(carControls, 'brake', 0, 3000);
+gui.add(carControls, 'torque', 0, 3200);
+gui.add(carControls, 'brake', 0, 3200);
 
 var parms = gui.addFolder('Parameters');
-parms.add(carParms, 'mass', 10, 1200);
+parms.add(carParms, 'mass', 10, 1800);
 parms.add(carParms, 'g', 0, 15);
 parms.add(carParms, 'coeffFriction', 0, 2.5);
+parms.add(carParms, 'areaLift', 0, 6);
 parms.add(carParms, 'coeffLift', 0, 2);
+parms.add(carParms, 'areaDrag', 0, 6);
 parms.add(carParms, 'coeffDrag', 0, 2);
 
 var width = window.innerWidth;
